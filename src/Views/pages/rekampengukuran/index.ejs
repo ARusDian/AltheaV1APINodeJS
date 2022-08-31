@@ -1,0 +1,379 @@
+<%- include ('../../components/head.ejs',{title : `Data ${pasien.nama}`}) %>
+
+<body class="hold-transition sidebar-mini layout-fixed ">
+    <div class="wrapper">
+        <%- include ('../../components/navbar.ejs') %>
+        <%- include ('../../components/sidebar.ejs') %>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-3">
+
+                                    <!-- Profile Image -->
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-body box-profile">
+
+                                            <h3 class="profile-username text-center"><%=pasien.nama%></h3>
+
+                                            <p class="text text-center"><%=pasien.gender%></p>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+
+                                    <!-- About Me Box -->
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Tentang Pasien</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Tempat Lahir</strong>
+                                            <p class="text"><%=pasien.tempat_lahir%></p>
+                                            <strong><i class="fa fa-calendar"></i> Tanggal Lahir</strong>
+                                            <p class="text"><%=pasien.tanggal_lahir%></p>
+                                            <strong>Umur</strong>
+                                            <p class="text">
+                                                <%=
+                                                Math.abs(new Date(Date.now()- Date.parse(pasien.tanggal_lahir.replaceAll("-", " "))).getUTCFullYear() - 1970)%>
+                                                Tahun
+                                            </p>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-9">
+                                    <div class="card">
+                                        <div class="card-header p-2">
+                                            <ul class="nav nav-pills">
+                                                <li class="nav-item"><a class="nav-link active" href="#activity"
+                                                        data-toggle="tab">Data Rekam Pemeriksaan</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="#tambahRiwayat"
+                                                        data-toggle="tab">tambahRiwayat</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="#diagram"
+                                                        data-toggle="tab">Diagram</a></li>
+                                            </ul>
+                                        </div><!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="tab-content">
+                                                <div class="active tab-pane" id="activity">
+                                                    <div class="card my-10">
+                                                        <div class="card-header">
+                                                            <h3 class="card-title">Data Pasien</h3>
+                                                        </div>
+                                                        <!-- /.card-header -->
+                                                        <div class="card-body">
+                                                            <table id="example1"
+                                                                class="table table-bordered table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>No</th>
+                                                                        <th>Tanggal Pemeriksaan</th>
+                                                                        <th>Lingkar Lengan</th>
+                                                                        <th>Suhu</th>
+                                                                        <th>Berat Badan</th>
+                                                                        <th>Tinggi Badan</th>
+                                                                        <th>Status Gizi</th>
+                                                                        <th>Aksi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% pasien["rekam_pengukurans"].forEach(function(RekamPengukuran, index) { %>
+                                                                    <tr>
+                                                                        <td><%=index+1%></td>
+                                                                        <td><%=new Date(RekamPengukuran.updatedAt).toLocaleDateString('id')%>
+                                                                        </td>
+                                                                        <td><%=RekamPengukuran.lingkar_lengan%></td>
+                                                                        <td><%=RekamPengukuran.suhu%></td>
+                                                                        <td><%=RekamPengukuran.berat_badan%></td>
+                                                                        <td><%=RekamPengukuran.tinggi_badan%></td>
+                                                                        <td>
+                                                                            <% if(RekamPengukuran.status_gizi <= 70){ %>
+                                                                            Gizi Buruk
+                                                                            [<%=RekamPengukuran.status_gizi%>]
+                                                                            <% }else if(RekamPengukuran.status_gizi < 85){ %>
+                                                                            Gizi Kurang
+                                                                            [<%=RekamPengukuran.status_gizi%>]
+                                                                            <% }else if(RekamPengukuran.status_gizi <110){ %>
+                                                                            Gizi Baik [<%=RekamPengukuran.status_gizi%>]
+                                                                            <% }else if(RekamPengukuran.status_gizi <120){ %>
+                                                                            Overweight
+                                                                            [<%=RekamPengukuran.status_gizi%>]
+                                                                            <% }else{ %>
+                                                                            Obesitas [<%=RekamPengukuran.status_gizi%>]
+                                                                            <% }%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a type="button"
+                                                                                class="btn btn-block btn-warning"
+                                                                                href="/rekam-pengukuran/edit/<%=RekamPengukuran.id%>">
+                                                                                <i class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </a>
+                                                                            <a type="button"
+                                                                                class="btn btn-block btn-danger"
+                                                                                href="/rekam-pengukuran/delete/<%=RekamPengukuran.id%>">
+                                                                                <i class="fa fa-trash"
+                                                                                    aria-hidden="true"></i> Hapus
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <% }); %>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>No</th>
+                                                                        <th>Tanggal Pemeriksaan</th>
+                                                                        <th>Lingkar Lengan</th>
+                                                                        <th>Suhu</th>
+                                                                        <th>Berat Badan</th>
+                                                                        <th>Tinggi Badan</th>
+                                                                        <th>Status Gizi</th>
+                                                                        <th>Aksi</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                        <!-- /.card-body -->
+                                                    </div>
+                                                    <!-- /.card -->
+                                                </div>
+
+                                                <div class="tab-pane" id="tambahRiwayat">
+                                                    <form class="form-horizontal" method="POST"
+                                                        action="/rekam-pengukuran/store/">
+                                                        <div>
+                                                            <input hidden name="pasienId" value="<%=pasien.id%>">
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputName"
+                                                                class="col-sm-2 col-form-label">Lingkar Lengan</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control"
+                                                                    id="inputlingkar_lengan"
+                                                                    placeholder="lingkar_lengan" name="lingkar_lengan">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputEmail" class="col-sm-2 col-form-label">Suhu
+                                                                Tubuh</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" id="inputsuhu"
+                                                                    placeholder="Suhu Tubuh" name="suhu">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputEmail"
+                                                                class="col-sm-2 col-form-label">Berat Badan</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control"
+                                                                    id="inputberat_badan" placeholder="Berat Badan"
+                                                                    name="berat_badan">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputEmail"
+                                                                class="col-sm-2 col-form-label">Tinggi Badan</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control"
+                                                                    id="inputtinggi_badan" placeholder="Tinggi Badan"
+                                                                    name="tinggi_badan">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputEmail"
+                                                                class="col-sm-2 col-form-label">Nilai Status
+                                                                Gizi</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" id="inputsuhu"
+                                                                    placeholder="Status Gizi" name="status_gizi">
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div>
+                                                            <h4 class="form-title">Catatan Index Status Gizi :</h4>
+                                                            <ul>
+                                                                <li>Kurang dari 70 => Gizi Buruk</li>
+                                                                <li>70 - 84.9 => Gizi Kurang</li>
+                                                                <li>85 - 109.9 => Gizi Baik</li>
+                                                                <li>110- 120 => Gizi Lebih</li>
+                                                                <li>Lebih dari 120 => Obesitas</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="offset-sm-2 col-sm-10">
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    Submit
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <!-- /.tab-pane -->
+                                                <!-- /.tab-pane -->
+                                                <div class="tab-pane" id="diagram">
+                                                    <!-- The Diagram -->
+                                                    <div class="card card-primary card-outline">
+                                                        <div class="card-header">
+                                                            <h3 class="card-title">
+                                                                <i class="far fa-chart-bar"></i>
+                                                                Line Chart
+                                                            </h3>
+
+                                                            <div class="card-tools">
+                                                                <button type="button" class="btn btn-tool"
+                                                                    data-card-widget="collapse">
+                                                                    <i class="fas fa-minus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="chart">
+                                                                <canvas id="ChartStatusGizi"
+                                                                    style="min-height: 250px; height: 250px; max-height: 500px; max-width: 100%;">
+                                                                </canvas>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.card-body-->
+                                                    </div>
+                                                    <!-- END Diagram item -->
+                                                </div>
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include ('../../components/footer.ejs') %>
+    </div>
+    <%- include ('../../components/scripts.ejs') %>
+    <%- include ('../../components/datatable.ejs') %>
+
+    <script>
+        //-------------
+        //- LINE CHART -
+        //--------------
+        var statusGiziCanvas = document.getElementById("ChartStatusGizi");
+        window.chartColors = {
+            red: 'rgb(255, 99, 132)',
+            orange: 'rgb(255, 159, 64)',
+            yellow: 'rgb(255, 205, 86)',
+            green: 'rgb(62, 201, 95)',
+            blue: 'rgb(54, 162, 235)',
+            purple: 'rgb(153, 102, 255)',
+            grey: 'rgb(201, 203, 207)'
+        };
+
+        Chart.defaults.global.defaultFontSize = 14;
+        const status_gizi = '<%= pasien["rekam_pengukurans"].map((RekamPengukuran) => RekamPengukuran.status_gizi) %>'
+            .split(",");
+        const date =
+            '<%= pasien["rekam_pengukurans"].map((RekamPengukuran) => new Date(RekamPengukuran.createdAt).toLocaleDateString("id")) %>'
+            .split(",");
+        var speedData = {
+            labels: date,
+            datasets: [{
+                fill: false,
+                label: "Status Gizi",
+                data: status_gizi,
+                borderColor: 'rgb(62, 113, 201)',
+                backgroundColor: 'rgb(75, 75, 75)'
+
+            }]
+        };
+
+        var chartOptions = {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    boxWidth: 80,
+                    fontColor: 'black'
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    title: function(items, data) {
+                        return "Nilai Gizi = "+data.datasets[items[0].datasetIndex].data[items[0].index];
+                    },
+                    label: function(t, data) {
+                        const d = data.datasets[t.datasetIndex].data[t['index']]
+                        const result = {
+                            'Gizi Buruk': d <= 70,
+                            'Gizi Kurang': d <= 84.9,
+                            'Gizi Baik': d <= 109.9,
+                            'Gizi Lebih': d <= 120,
+                            'Obesitas': d > 120,
+                        }
+                        return Object.keys(result).find((key) => result[key])
+                    },
+                },
+            },
+            backgroundRules: [{
+                backgroundColor: window.chartColors.red,
+                yAxisSegement: 70
+            }, {
+                backgroundColor: window.chartColors.orange,
+                yAxisSegement: 85
+            }, {
+                backgroundColor: window.chartColors.green,
+                yAxisSegement: 110
+            }, {
+                backgroundColor: window.chartColors.yellow,
+                yAxisSegement: 120
+            }, {
+                backgroundColor: window.chartColors.blue,
+                yAxisSegement: Infinity
+            }],
+        };
+        chartPlugin = [{
+            beforeDraw: function (chart) {
+                var ctx = chart.chart.ctx;
+                var ruleIndex = 0;
+                var rules = chart.chart.options.backgroundRules;
+                var yaxis = chart.chart.scales["y-axis-0"];
+                var xaxis = chart.chart.scales["x-axis-0"];
+                var partPercentage = 1 / (yaxis.ticksAsNumbers.length - 1);
+                for (var i = yaxis.ticksAsNumbers.length - 1; i > 0; i--) {
+                    if (yaxis.ticksAsNumbers[i] < rules[ruleIndex].yAxisSegement) {
+                        ctx.fillStyle = rules[ruleIndex].backgroundColor;
+                        ctx.fillRect(xaxis.left, yaxis.top + ((i - 1) * (yaxis.height * partPercentage)),
+                            xaxis.width, yaxis.height * partPercentage);
+                    } else {
+                        ruleIndex++;
+                        i++;
+                    }
+                }
+            }
+        }]
+
+        var lineChart = new Chart(
+            statusGiziCanvas, {
+                type: 'line',
+                data: speedData,
+                options: chartOptions,
+                plugins: chartPlugin
+            }
+        );
+    </script>
+</body>
+
+</html>

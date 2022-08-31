@@ -1,0 +1,94 @@
+<%- include ('../../components/head.ejs',{title :'Dashboard'}) %>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <%- include ('../../components/navbar.ejs') %>
+        <%- include ('../../components/sidebar.ejs') %>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Data Rekam Pengukuran</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="p-3 bg-white shadow-sm rounded-lg">
+                        <form class="form-horizontal" method="POST" action="/rekam-pengukuran/update/<%=rekampengukuran.id %>">
+                            <div>
+                                <input hidden name="pasienId" value="<%=rekampengukuran.pasienId%>">
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputName"
+                                    class="col-sm-2 col-form-label">Lingkar Lengan</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputlingkar_lengan" value="<%=rekampengukuran.lingkar_lengan%>"
+                                        placeholder="lingkar_lengan" name="lingkar_lengan">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail"
+                                    class="col-sm-2 col-form-label">Suhu Tubuh</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputsuhu" value="<%=rekampengukuran.suhu%>"
+                                        placeholder="Suhu Tubuh" name ="suhu">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail"
+                                    class="col-sm-2 col-form-label">Berat Badan</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputberat_badan" value="<%=rekampengukuran.berat_badan%>"
+                                        placeholder="Berat Badan" name ="berat_badan">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail"
+                                    class="col-sm-2 col-form-label">Tinggi Badan</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputtinggi_badan" value="<%=rekampengukuran.tinggi_badan%>"
+                                        placeholder="Tinggi Badan" name ="tinggi_badan">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail"
+                                    class="col-sm-2 col-form-label">Nilai Status Gizi</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputsuhu" value="<%=rekampengukuran.status_gizi%>"
+                                        placeholder="Status Gizi" name ="status_gizi">
+                                </div>
+                            </div>
+                            <br>
+                            <div>
+                                <h4 class="form-title">Catatan Index Status Gizi :</h4>
+                                <ul>
+                                    <li>Kurang dari 70 => Gizi Buruk</li>
+                                    <li>70 - 84.9 => Gizi Kurang</li>
+                                    <li>85 - 109.9 => Gizi Baik</li>
+                                    <li>110- 120 => Gizi Lebih</li>
+                                    <li>Lebih dari 120 => Obesitas</li>
+                                </ul>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-sm-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">
+                                        Ubah Data Pengukuran
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <%- include ('../../components/footer.ejs') %>
+    </div>
+    <%- include ('../../components/scripts.ejs') %>
+
+</body>
+
+</html>

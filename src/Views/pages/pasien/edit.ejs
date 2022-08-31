@@ -1,0 +1,60 @@
+<%- include ('../../components/head.ejs',{title :'Dashboard'}) %>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <%- include ('../../components/navbar.ejs') %>
+        <%- include ('../../components/sidebar.ejs') %>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Data Pasien</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="p-3 bg-white shadow-sm rounded-lg">
+                        <form method="POST" action="/pasien/update/<%=pasien.id %>">
+                            <div class="mb-2">
+                                <input id="nama" type="text" class="form-control" name="nama" value="<%=pasien.nama%>"
+                                    required autocomplete="nama" placeholder="Nama pasien ...">
+                            </div>
+                            <div class="mb-2">
+                                <label class="mr-4">Jenis Kelamin</label>
+                                <select id="gender" name="gender">
+                                    <option <%= pasien.gender == 'Laki-laki' ? 'selected' : ''%> value="Laki-laki">
+                                        Laki-Laki</option>
+                                    <option <%= pasien.gender == 'Perempuan' ? 'selected' : ''%> value="Perempuan">
+                                        Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <input id="tempat_lahir" type="text" class="form-control" name="tempat_lahir"
+                                    value="<%=pasien.tempat_lahir%>" required autocomplete="tempat_lahir"
+                                    placeholder="Tempat lahir pasien ...">
+                            </div>
+                            <div class="mb-2">
+                                <label class="mr-4">Tanggal lahir</label>
+                                <input id="tanggal_lahir" type="date" class="form-control" name="tanggal_lahir"
+                                    value="<%=pasien.tanggal_lahir%>" required autocomplete="tanggal_lahir"
+                                    placeholder="Tanggal lahir pasien ...">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Ubah Data Pasien
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <%- include ('../../components/footer.ejs') %>
+    </div>
+    <%- include ('../../components/scripts.ejs') %>
+
+</body>
+
+</html>

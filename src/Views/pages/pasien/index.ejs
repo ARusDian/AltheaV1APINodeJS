@@ -1,0 +1,119 @@
+<%- include ('../../components/head.ejs',{title :'Dashboard'}) %>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <%- include ('../../components/navbar.ejs') %>
+        <%- include ('../../components/sidebar.ejs') %>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <% if (typeof message != 'undefined' && typeof type != 'undefined') { %>
+                        <%- include('../../components/exe_message.ejs'),{message : message, type : type} %>
+                    <% } %>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Data Pasien</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="p-3 bg-white shadow-sm rounded-lg">
+                        <form method="POST" action="/pasien/store/">
+                            <div class="mb-2">
+                                <input id="nama" type="text" class="form-control" name="nama" value="" required autocomplete="nama" placeholder="Nama pasien ...">
+                            </div>
+                            <div class="mb-2">
+                                <label class="mr-4">Jenis Kelamin</label>
+                                <select id="gender" name="gender"> 
+                                    <option value="Laki-laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <input id="tempat_lahir" type="text" class="form-control" name="tempat_lahir" value="" required autocomplete="tempat_lahir" placeholder="Tempat lahir pasien ...">
+                            </div>
+                            <div class="mb-2">
+                                <label class="mr-4">Tanggal lahir</label>
+                                <input id="tanggal_lahir" type="date" class="form-control" name="tanggal_lahir" value="" required autocomplete="tanggal_lahir" placeholder="Tanggal lahir pasien ...">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Tambah Pasien
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card my-10">
+                        <div class="card-header">
+                            <h3 class="card-title">Data Pasien</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Gender</th>
+                                        <th>Umur</th>
+                                        <th>Tempat lahir</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% Pasien.forEach(function(pasien, index){ %>
+                                    <tr>
+                                        <td><%=index+1%></td>
+                                        <td><%=pasien.nama%></td>
+                                        <td><%=pasien.gender%></td>
+                                        <td>
+                                            <%=Math.abs(new Date(Date.now()- Date.parse(pasien.tanggal_lahir.replaceAll("-", " "))).getUTCFullYear() - 1970)%>
+                                            Tahun
+                                        </td>
+                                        <td><%=pasien.tempat_lahir%></td>
+                                        <td><%=pasien.tanggal_lahir%></td>
+                                        <td>
+                                                <a type="button" class="btn btn-block btn-primary" href = "/pasien/<%=pasien.id%>">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i> Tampil
+                                                </a>
+                                                <a type="button" class="btn btn-block btn-warning" href = "pasien/edit/<%=pasien.id%>">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                </a>
+                                                <a type="button" class="btn btn-block btn-danger" href = "pasien/delete/<%=pasien.id%>">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i> Hapus
+                                                </a>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Gender</th>
+                                        <th>Umur</th>
+                                        <th>Tempat lahir</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+        </div>
+        </section>
+    </div>
+
+    <%- include ('../../components/footer.ejs') %>
+    </div>
+    <%- include ('../../components/scripts.ejs') %>
+    <%- include ('../../components/datatable.ejs') %>
+
+</body>
+
+</html>
