@@ -53,6 +53,7 @@ export const editRekamPengukuran = async (req, res) => {
 
 export const storeRekamPengukuran = async (req, res) => {
     try {
+        console.log(res,req);
         await RekamPengukuran.create(req.body);
         res.status(200).redirect('back');
     } catch (error) {

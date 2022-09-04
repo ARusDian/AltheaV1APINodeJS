@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(compression());
 app.use('/pasien', pasienRoutes);
 app.use('/rekam-pengukuran', rekamPengukuranRoutes);
-app.use('/api/pasien', apiPasienRoutes);
+app.use('/api/', apiPasienRoutes);
 app.listen(5000, async() => {
     console.log('Server running at port 5000');
 });

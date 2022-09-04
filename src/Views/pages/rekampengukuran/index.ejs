@@ -12,19 +12,15 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-3">
-
                                     <!-- Profile Image -->
                                     <div class="card card-primary card-outline">
                                         <div class="card-body box-profile">
-
                                             <h3 class="profile-username text-center"><%=pasien.nama%></h3>
-
                                             <p class="text text-center"><%=pasien.gender%></p>
                                         </div>
                                         <!-- /.card-body -->
                                     </div>
                                     <!-- /.card -->
-
                                     <!-- About Me Box -->
                                     <div class="card card-primary">
                                         <div class="card-header">
@@ -76,9 +72,12 @@
                                                                         <th>No</th>
                                                                         <th>Tanggal Pemeriksaan</th>
                                                                         <th>Lingkar Lengan</th>
+																																				<th>Lingkar Kepala</th>
+																																				<th>Setengah Depa</th>
                                                                         <th>Suhu</th>
                                                                         <th>Berat Badan</th>
                                                                         <th>Tinggi Badan</th>
+																																				<th>Bee</th>
                                                                         <th>Status Gizi</th>
                                                                         <th>Aksi</th>
                                                                     </tr>
@@ -89,10 +88,13 @@
                                                                         <td><%=index+1%></td>
                                                                         <td><%=new Date(RekamPengukuran.updatedAt).toLocaleDateString('id')%>
                                                                         </td>
-                                                                        <td><%=RekamPengukuran.lingkar_lengan%></td>
-                                                                        <td><%=RekamPengukuran.suhu%></td>
-                                                                        <td><%=RekamPengukuran.berat_badan%></td>
-                                                                        <td><%=RekamPengukuran.tinggi_badan%></td>
+                                                                        <td><%=RekamPengukuran.lingkar_lengan%> cm</td>
+																																				<td><%=RekamPengukuran.lingkar_kepala%> cm</td>
+																																				<td><%=RekamPengukuran.setengah_depa%> cm</td>
+                                                                        <td><%=RekamPengukuran.suhu%> C</td>
+                                                                        <td><%=RekamPengukuran.berat_badan%> kg</td>
+                                                                        <td><%=RekamPengukuran.tinggi_badan%> cm</td>
+                                                                        <td><%=RekamPengukuran.BEE%> kkal/hari</td>
                                                                         <td>
                                                                             <% if(RekamPengukuran.status_gizi <= 70){ %>
                                                                             Gizi Buruk
@@ -131,9 +133,12 @@
                                                                         <th>No</th>
                                                                         <th>Tanggal Pemeriksaan</th>
                                                                         <th>Lingkar Lengan</th>
+																																				<th>Lingkar Kepala</th>
+																																				<th>Setengah Depa</th>
                                                                         <th>Suhu</th>
                                                                         <th>Berat Badan</th>
                                                                         <th>Tinggi Badan</th>
+																																				<th>Bee</th>
                                                                         <th>Status Gizi</th>
                                                                         <th>Aksi</th>
                                                                     </tr>
@@ -144,7 +149,6 @@
                                                     </div>
                                                     <!-- /.card -->
                                                 </div>
-
                                                 <div class="tab-pane" id="tambahRiwayat">
                                                     <form class="form-horizontal" method="POST"
                                                         action="/rekam-pengukuran/store/">
@@ -157,7 +161,25 @@
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control"
                                                                     id="inputlingkar_lengan"
-                                                                    placeholder="lingkar_lengan" name="lingkar_lengan">
+                                                                    placeholder="Lingkar Lengan" name="lingkar_lengan">
+                                                            </div>
+                                                        </div>
+																												<div class="form-group row">
+                                                            <label for="inputName"
+                                                                class="col-sm-2 col-form-label">Lingkar Kepala</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control"
+                                                                    id="inputlingkar_kepala"
+                                                                    placeholder="Lingkar Kepala" name="lingkar_kepala">
+                                                            </div>
+                                                        </div>
+																												<div class="form-group row">
+                                                            <label for="inputName"
+                                                                class="col-sm-2 col-form-label">Setengah Depa</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control"
+                                                                    id="inputsetengah_depa"
+                                                                    placeholder="Setengah Depa" name="setengah_depa">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -193,6 +215,14 @@
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control" id="inputsuhu"
                                                                     placeholder="Status Gizi" name="status_gizi">
+                                                            </div>
+                                                        </div>
+																												<div class="form-group row">
+                                                            <label for="inputEmail"
+                                                                class="col-sm-2 col-form-label">Keperluan Energi Ekspenditur</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" id="inputBEE"
+                                                                    placeholder="Keperluan Energi Ekspenditur" name="BEE">
                                                             </div>
                                                         </div>
                                                         <br>
