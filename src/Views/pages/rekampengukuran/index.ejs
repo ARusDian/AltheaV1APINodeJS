@@ -51,7 +51,7 @@
                                                 <li class="nav-item"><a class="nav-link active" href="#activity"
                                                         data-toggle="tab">Data Rekam Pemeriksaan</a></li>
                                                 <li class="nav-item"><a class="nav-link" href="#tambahRiwayat"
-                                                        data-toggle="tab">tambahRiwayat</a></li>
+                                                        data-toggle="tab">Tambah Riwayat</a></li>
                                                 <li class="nav-item"><a class="nav-link" href="#diagram"
                                                         data-toggle="tab">Diagram</a></li>
                                             </ul>
@@ -73,11 +73,11 @@
                                                                         <th>Tanggal Pemeriksaan</th>
                                                                         <th>Lingkar Lengan</th>
 																																				<th>Lingkar Kepala</th>
-																																				<th>Setengah Depa</th>
+																																				<th>Panjang Ulna</th>
                                                                         <th>Suhu</th>
                                                                         <th>Berat Badan</th>
                                                                         <th>Tinggi Badan</th>
-																																				<th>Bee</th>
+																																				<th>Keperluan Energi</th>
                                                                         <th>Status Gizi</th>
                                                                         <th>Aksi</th>
                                                                     </tr>
@@ -90,7 +90,7 @@
                                                                         </td>
                                                                         <td><%=RekamPengukuran.lingkar_lengan%> cm</td>
 																																				<td><%=RekamPengukuran.lingkar_kepala%> cm</td>
-																																				<td><%=RekamPengukuran.setengah_depa%> cm</td>
+																																				<td><%=RekamPengukuran.panjang_ulna%> cm</td>
                                                                         <td><%=RekamPengukuran.suhu%> C</td>
                                                                         <td><%=RekamPengukuran.berat_badan%> kg</td>
                                                                         <td><%=RekamPengukuran.tinggi_badan%> cm</td>
@@ -134,11 +134,11 @@
                                                                         <th>Tanggal Pemeriksaan</th>
                                                                         <th>Lingkar Lengan</th>
 																																				<th>Lingkar Kepala</th>
-																																				<th>Setengah Depa</th>
+																																				<th>Panjang Ulna</th>
                                                                         <th>Suhu</th>
                                                                         <th>Berat Badan</th>
                                                                         <th>Tinggi Badan</th>
-																																				<th>Bee</th>
+																																				<th>Keperluan Energi</th>
                                                                         <th>Status Gizi</th>
                                                                         <th>Aksi</th>
                                                                     </tr>
@@ -160,7 +160,7 @@
                                                                 class="col-sm-2 col-form-label">Lingkar Lengan</label>
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control"
-                                                                    id="inputlingkar_lengan"
+                                                                    id="inputlingkar_lengan" step="0.01"
                                                                     placeholder="Lingkar Lengan" name="lingkar_lengan">
                                                             </div>
                                                         </div>
@@ -169,17 +169,17 @@
                                                                 class="col-sm-2 col-form-label">Lingkar Kepala</label>
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control"
-                                                                    id="inputlingkar_kepala"
+                                                                    id="inputlingkar_kepala" step="0.01"
                                                                     placeholder="Lingkar Kepala" name="lingkar_kepala">
                                                             </div>
                                                         </div>
 																												<div class="form-group row">
                                                             <label for="inputName"
-                                                                class="col-sm-2 col-form-label">Setengah Depa</label>
+                                                                class="col-sm-2 col-form-label">Panjang Ulna</label>
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control"
-                                                                    id="inputsetengah_depa"
-                                                                    placeholder="Setengah Depa" name="setengah_depa">
+                                                                    id="inputsetengah_depa" step="0.01"
+                                                                    placeholder="Panjang Ulna" name="panjang_ulna">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -187,7 +187,7 @@
                                                                 Tubuh</label>
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control" id="inputsuhu"
-                                                                    placeholder="Suhu Tubuh" name="suhu">
+                                                                    placeholder="Suhu Tubuh" name="suhu" step="0.01">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -196,7 +196,7 @@
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control"
                                                                     id="inputberat_badan" placeholder="Berat Badan"
-                                                                    name="berat_badan">
+                                                                    name="berat_badan" step="0.01">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -205,7 +205,7 @@
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control"
                                                                     id="inputtinggi_badan" placeholder="Tinggi Badan"
-                                                                    name="tinggi_badan">
+                                                                    name="tinggi_badan" step="0.01">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -214,7 +214,7 @@
                                                                 Gizi</label>
                                                             <div class="col-sm-10">
                                                                 <input type="number" class="form-control" id="inputsuhu"
-                                                                    placeholder="Status Gizi" name="status_gizi">
+                                                                    placeholder="Status Gizi" name="status_gizi" step="0.01">
                                                             </div>
                                                         </div>
 																												<div class="form-group row">

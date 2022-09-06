@@ -18,48 +18,65 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="p-3 bg-white shadow-sm rounded-lg">
-                        <form class="form-horizontal" method="POST" action="/rekam-pengukuran/update/<%=rekampengukuran.id %>">
+                        <form class="form-horizontal" method="POST"
+                            action="/rekam-pengukuran/update/<%=rekampengukuran.id %>">
                             <div>
                                 <input hidden name="pasienId" value="<%=rekampengukuran.pasienId%>">
                             </div>
                             <div class="form-group row">
-                                <label for="inputName"
-                                    class="col-sm-2 col-form-label">Lingkar Lengan</label>
+                                <label for="inputName" class="col-sm-2 col-form-label">Lingkar Lengan</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputlingkar_lengan" value="<%=rekampengukuran.lingkar_lengan%>"
-                                        placeholder="lingkar_lengan" name="lingkar_lengan">
+                                    <input type="number" class="form-control" id="inputlingkar_lengan"
+                                        value="<%=rekampengukuran.lingkar_lengan%>" placeholder="lingkar_lengan"
+                                        name="lingkar_lengan" step="0.01">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputEmail"
-                                    class="col-sm-2 col-form-label">Suhu Tubuh</label>
+                                <label for="inputName" class="col-sm-2 col-form-label">Lingkar Kepala</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputsuhu" value="<%=rekampengukuran.suhu%>"
-                                        placeholder="Suhu Tubuh" name ="suhu">
+                                    <input type="number" class="form-control" id="inputlingkar_kepala"
+                                        value="<%=rekampengukuran.lingkar_kepala%>"placeholder="Lingkar Kepala"
+                                        step="0.01" name="lingkar_kepala">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputEmail"
-                                    class="col-sm-2 col-form-label">Berat Badan</label>
+                                <label for="inputName" class="col-sm-2 col-form-label">Panjang Ulna</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputberat_badan" value="<%=rekampengukuran.berat_badan%>"
-                                        placeholder="Berat Badan" name ="berat_badan">
+                                    <input type="number" class="form-control" id="inputsetengah_depa"
+                                        value="<%=rekampengukuran.panjang_ulna%>" placeholder="Panjang Ulna"
+                                        step="0.01" name="panjang_ulna">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputEmail"
-                                    class="col-sm-2 col-form-label">Tinggi Badan</label>
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Suhu Tubuh</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputtinggi_badan" value="<%=rekampengukuran.tinggi_badan%>"
-                                        placeholder="Tinggi Badan" name ="tinggi_badan">
+                                    <input type="number" class="form-control" id="inputsuhu"
+                                        value="<%=rekampengukuran.suhu%>" placeholder="Suhu Tubuh"
+                                        step="0.01" name="suhu">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputEmail"
-                                    class="col-sm-2 col-form-label">Nilai Status Gizi</label>
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Berat Badan</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputsuhu" value="<%=rekampengukuran.status_gizi%>"
-                                        placeholder="Status Gizi" name ="status_gizi">
+                                    <input type="number" class="form-control" id="inputberat_badan"
+                                        value="<%=rekampengukuran.berat_badan%>" placeholder="Berat Badan"
+                                        step="0.01" name="berat_badan">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Tinggi Badan</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputtinggi_badan"
+                                        value="<%=rekampengukuran.tinggi_badan%>" placeholder="Tinggi Badan"
+                                        step="0.01" name="tinggi_badan">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Nilai Status Gizi</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputsuhu"
+                                        value="<%=rekampengukuran.status_gizi%>" placeholder="Status Gizi"
+                                        step="0.01" name="status_gizi">
                                 </div>
                             </div>
                             <br>
